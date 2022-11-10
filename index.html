@@ -1,25 +1,30 @@
 <!DOCTYPE html>   <!-- indica que pode usar tags do html 5 -->
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemplo CRUD</title>
+        <title>Exemplo CRUD</title>
 </head>
 <body>
 
     <h4>Exemplo CRUD usando a api back end</h4>
     <div id="lista"> lista  </div>
     <script>
-        ajax = new XMLHttpRequest();
-        ajax.open("GET","https://projeto-frankly.herokuapp.com/api/usuario/all");
-        ajas.send();
-        ajax.onload = function(){
+        xhttp = new XMLHttpRequest();
+        xhttp.open("GET","https://projeto-frankly.herokuapp.com/api/usuario/all");
+       
+        xhttp.onload = function(){
             lista = this.responseText;
+            lista = JSON.parse(lista);
             console.log(lista);
-            document.getElementById('lista').innerHTML = lista;
+
+            document.getElementById('lista').innerHTML = "Lista de pessoas <br>";
+
+            for (const l of lista) {
+                document.getElementById('lista').append(l.nome + " - " + l.email);
+                
+                
+            }
             
         }
+        xhttp.send();
     </script>
 
 </body>
