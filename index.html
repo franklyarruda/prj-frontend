@@ -8,7 +8,19 @@
 </head>
 <body>
 
-    <h1></h1>
-    
+    <h4>Exemplo CRUD usando a api back end</h4>
+    <div id="lista"> lista  </div>
+    <script>
+        ajax = new XMLHttpRequest();
+        ajax.open("GET","https://projeto-frankly.herokuapp.com/api/usuario/all");
+        ajas.send();
+        ajax.onload = function(){
+            lista = this.responseText;
+            console.log(lista);
+            document.getElementById('lista').innerHTML = lista;
+            
+        }
+    </script>
+
 </body>
 </html>
