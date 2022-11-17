@@ -5,26 +5,67 @@
 <body>
 
     <h4>Exemplo CRUD usando a api back end</h4>
+    Nome:<br>
+    <input type="text" placeholder="Nome"><br>
+    Email:<br>
+    <input type="text" placeholder="Email"><br>
+    <input type="button" value="Gravar" onclick=Incluir()>
+
+
     <div id="lista"> lista  </div>
+
     <script>
         xhttp = new XMLHttpRequest();
-        xhttp.open("GET","https://projeto-frankly.herokuapp.com/api/usuario/all");
+
+        function listar(){
+
+            xhttp.open("GET","https://projeto-frankly.herokuapp.com/api/usuario/all");
        
-        xhttp.onload = function(){
-            lista = this.responseText;
-            lista = JSON.parse(lista);
-            console.log(lista);
+       xhttp.onload = function(){
+           lista = this.responseText;
+           lista = JSON.parse(lista);
+           console.log(lista);
 
-            document.getElementById('lista').innerHTML = "Lista de pessoas <br>";
+           document.getElementById('lista').innerHTML = "Lista de pessoas <br>";
+           texto = "Lista de pessoas <br>";
 
-            for (const l of lista) {
-                document.getElementById('lista').append(l.nome + " - " + l.email);
-                
-                
-            }
-            
+           for (const l of lista) {
+               document.getElementById('lista').append(l.nome + " - " + l.email);
+               
+               
+           }
+           
+        }
+
+        
+       
         }
         xhttp.send();
+
+        function incluir(){
+            alert("dentro de função incluir");
+            var usuario = {};
+            usuario.nome = document.getElementById("Nome").value;
+            usuario.email = document.getElementById("Email").value;
+            console.log(usuario);
+
+
+
+            xhttp.open("POST", "https://projeto-frankly.herokuapp.com/api/usuario/")
+            xhttp.setRequestHeader("Content-Type","");
+            xhttp.send(JSON.stringify(usuario));
+            xhttp.onload = function(){
+                console.log(this.responseText);
+            }
+            
+            
+        }
+        listar();
+
+
+
+
+
     </script>
 
 </body>
