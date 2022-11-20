@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <h4>Projeto PRODUTO CRUD com API back-end </h4>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+        <title>Atividade CRUD</title>
 </head>
 <body>
     <style>
@@ -18,19 +14,22 @@
         
     <input type="hidden" id="id">
 
+
     <label for="produto"> Produto:</label> <br>
     <input type="text" id="produto" placeholder="Processador i5" class="form-control"> <br>
 
     <label for="descricao"> Descrição: </label> <br>
     <input type="text" id="descricao" placeholder="descricao" class="form-control"> <br>
     
-    <label for="descricao"> Preço: </label> <br>
+    <label for="valor"> Valor: </label> <br>
     <input type="text" id="valor" placeholder="100,00" class="form-control"> <br>
     <br>
 
 
-    <input type="button" value="Cadastrar" onclick="gravar()" class="btn btn-primary">
+    <input type="button" value="Gravar" onclick="gravar()" class="btn btn-primary">
+
     <input type="button" value="Novo Produto" onclick="limpar()" class="btn btn-info">
+
     <input type="button" value="Apagar" onclick="apagar()" class="btn btn-danger">
     
     <h4>Lista de Produto</h4>
