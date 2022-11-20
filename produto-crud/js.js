@@ -11,7 +11,10 @@ function listarProdutos(){
 
     xhttp.onload = function(){
         listaProduto = this.responseText;
+      //  console.log(listaProduto);
         listaProduto = JSON.parse(listaProduto);
+       // console.log(listaProduto);
+
        
 
         texto = "";
@@ -19,13 +22,13 @@ function listarProdutos(){
         i = 0;
         for (const u of listaProduto){
             texto += `<tr onclick='editar(${i})'>
-                        <td>${u.produto}</td>
+                        <td>${u.nome}</td>
                         <td>${u.descricao}</td>
                         <td>${u.valor}</td>
                         </tr>`;
             i++;
         }
-        document.getElementById('listaProduto').innerHTML = texto;
+        document.getElementById('listaproduto').innerHTML = texto;
 
     }
 }
@@ -33,20 +36,22 @@ function listarProdutos(){
 function editar(i){
 
     u = listaProduto[i];
-    document.getElementById("produto").value = u.produto;
+    document.getElementById("id").value = u.id;
+    document.getElementById("nome").value = u.produto;
     document.getElementById("descricao").value = u.descricao;
     document.getElementById("valor").value = u.valor;
-    document.getElementById("id").value = u.id;
 
 }
 
 function gravar(){
-
+    alert("dentro de gravar");
     var produtos = {};
-    produtos.produto = document.getElementById("produto").value;
+    produtos.id = document.getElementById("id").value;
+    produtos.nome = document.getElementById("nome").value;
     produtos.descricao = document.getElementById("descricao").value;
     produtos.valor = document.getElementById("valor").value;
-    produtos.id = document.getElementById("id").value;
+    
+    
 
 if (produtos.id > 0){
     acao = "PUT"; //alteração
@@ -55,17 +60,19 @@ if (produtos.id > 0){
 
 }
 
-xhttp.open(acao, "api");
-xhttp.setResquestHeader("Content-type", "application/json;charset=UTF-8");
+xhttp.open(acao, api);
+xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 xhttp.send(JSON.stringify(produtos));
+
 xhttp.onload = function (){
+    //console.log(this.responseText);
     listarProdutos();
     limpar();
 }
 }
 
 function limpar(){
-    document.getElementById("produto").value = "";
+    document.getElementById("nome").value = "";
     document.getElementById("descricao").value = "";
     document.getElementById("valor").value = "";
     document.getElementById("id").value = "";
@@ -82,5 +89,5 @@ function apagar(){
         limpar();
     }
 }
-listaProduto();
+listarProdutos();
 
