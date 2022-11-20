@@ -12,16 +12,16 @@ function listarProdutos(){
     xhttp.onload = function(){
         listaProduto = this.responseText;
         listaProduto = JSON.parse(listaProduto);
-        console.log(listaProduto);
+       
 
         texto = "";
         
         i = 0;
-        for (const item of listaProduto){
+        for (const u of listaProduto){
             texto += `<tr onclick='editar(${i})'>
-                        <td>${item.produto}</td>
-                        <td>${item.descricao}</td>
-                        <td>${item.valor}</td>
+                        <td>${u.produto}</td>
+                        <td>${u.descricao}</td>
+                        <td>${u.valor}</td>
                         </tr>`;
             i++;
         }
@@ -55,8 +55,7 @@ if (produtos.id > 0){
 
 }
 
-xhttp.open(acao, api);
-
+xhttp.open(acao, "api");
 xhttp.setResquestHeader("Content-type", "application/json;charset=UTF-8");
 xhttp.send(JSON.stringify(produtos));
 xhttp.onload = function (){
@@ -83,5 +82,5 @@ function apagar(){
         limpar();
     }
 }
-limpar();
+listaProduto();
 
