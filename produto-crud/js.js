@@ -37,7 +37,7 @@ function editar(i){
 
     u = listaProduto[i];
     document.getElementById("id").value = u.id;
-    document.getElementById("nome").value = u.produto;
+    document.getElementById("nome").value = u.nome;
     document.getElementById("descricao").value = u.descricao;
     document.getElementById("valor").value = u.valor;
 
